@@ -43,7 +43,7 @@ DEBUG = os.getenv("DEBUG", "True") == "True"
 ALLOWED_HOSTS = ["*"]
 
 #CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOWED_ORIGINS = [FRONT_URL]
+CORS_ALLOWED_ORIGINS = [FRONT_URL, "http://localhost"]
 CORS_ALLOW_CREDENTIALS = True
 
 # Application definition
@@ -147,8 +147,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
-STATIC_URL = "static/"
-STATICFILES_DIRS = [BASE_DIR / "static", ]
+STATIC_URL = "/static/"
+# STATICFILES_DIRS = [BASE_DIR / "static", ]
 
 
 # Default primary key field type
