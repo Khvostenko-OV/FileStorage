@@ -28,8 +28,6 @@ STORAGE_DIR = MEDIA_ROOT
 BASE_URL = os.getenv("BASE_URL", "http://localhost:8000/")
 # Frontend URL
 FRONT_URL = os.getenv("FRONT_URL", "http://localhost:3000")
-# URL for downloading files
-DOWNLOAD_URL = "storage/get/"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -45,6 +43,7 @@ ALLOWED_HOSTS = ["*"]
 #CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [FRONT_URL, "http://localhost"]
 CORS_ALLOW_CREDENTIALS = True
+CSRF_TRUSTED_ORIGINS = [FRONT_URL, "http://localhost"]
 
 # Application definition
 

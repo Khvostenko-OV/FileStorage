@@ -4,7 +4,7 @@ from datetime import datetime, timezone
 
 from django.db import models
 
-from back.settings import STORAGE_DIR, BASE_URL, DOWNLOAD_URL
+from back.settings import STORAGE_DIR, BASE_URL
 from back.utils import valid_filename
 from users.models import User
 
@@ -97,7 +97,7 @@ class Link(models.Model):
         ordering = ["pk"]
 
     def __str__(self):
-        return f"{BASE_URL}{DOWNLOAD_URL}?link={self.href}"
+        return f"{BASE_URL}storage/get/?link={self.href}"
 
     @property
     def expired(self):
