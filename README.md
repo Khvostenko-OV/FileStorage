@@ -6,7 +6,7 @@
 
 a) Войти на сервер под юзером root
 
-b) инсталлировать пакеты:
+b) Инсталлировать пакеты:
 
     $ apt update
     $ apt upgrade
@@ -70,34 +70,30 @@ a) Создать файл конфигурации:
     server {
       listen 80;
       server_name IP-сервера;
-      location /static/ { root /home/www/FileStorage-backend; }
+      location /backend/static/ { root /home/www/FileStorage-backend; }
       location / { proxy_pass http://127.0.0.1:8000; }
     }
 
-b) Настроить права собственности:
-
-    $ sudo chown -R www-data:www-data /home/www/FileStorage-backend/
-
-c) Настроить права доступа к файлам и папкам в рабочей директрии проекта:
+b) Настроить права доступа к файлам и папкам в рабочей директрии проекта:
 
 *Находясь в корневой директории юзера:*
 
     $ sudo chmod 755 FileStorage-backend
     $ cd FileStorage-backend
     $ sudo chmod 644 *
-    $ sudo chmod 755 static
+    $ sudo chmod 755 backend
 
-*и далее применить sudo chmod 755 ко всем папкам, вложенным в static*
+*и далее применить sudo chmod 755 ко всем папкам, вложенным в backend*
 
-d) Запустить nginx:
+c) Запустить nginx:
 
     $ sudo service nginx start
 
-e) Запустить WSGI:
+d) Запустить WSGI:
 
     $ gunicorn back.wsgi -b 127.0.0.1:8000
 
-f) Остановка WSGI:
+e) Остановка WSGI:
 
     $ fuser -k 8000/tcp
 

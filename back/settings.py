@@ -41,9 +41,9 @@ DEBUG = os.getenv("DEBUG", "True") == "True"
 ALLOWED_HOSTS = ["*"]
 
 #CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOWED_ORIGINS = [FRONT_URL, "http://localhost"]
+CORS_ALLOWED_ORIGINS = [FRONT_URL, "http://localhost:3000"]
 CORS_ALLOW_CREDENTIALS = True
-CSRF_TRUSTED_ORIGINS = [FRONT_URL, "http://localhost"]
+CSRF_TRUSTED_ORIGINS = [FRONT_URL, "http://localhost:3000"]
 
 # Application definition
 
