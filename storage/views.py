@@ -99,7 +99,7 @@ def file_upload(request):
             return JsonResponse({"error": 400, "error_msg": f"File '{file.name}' already exists!"})
 
         new = StoredFile.objects.create(name=file.name, owner=request.user, file=file, description=description)
-        logger.info(f"User: {request.user}. Action: upload file {new.pk}: {new.name}")
+        logger.info(f"User: {request.user} | Action: upload file {new.pk}: {new.name}")
         return JsonResponse({"ok": 201, "file": new.serializer})
 
     return JsonResponse(OK_200)
@@ -126,7 +126,7 @@ def file_download(request, pk: int):
         response["Content-Disposition"] = f"attachment; filename='{file.name}'"
         file.downloads += 1
         file.save()
-        logger.info(f"User: {request.user}. Action: download file {file.pk}: {file.name}")
+        logger.info(f"User: {request.user} | Action: download file {file.pk}: {file.name}")
         return response
 
 
@@ -156,7 +156,7 @@ def link_create(request):
     if isinstance(delta, int) and delta > 0:
         link.expire_at = link.created_at + timedelta(minutes=delta)
         link.save()
-    logger.info(f"User: {request.user}. Action: create download link to file {file.pk}: {file.name}")
+    logger.info(f"User: {request.user} | Action: create download link to file {file.pk}: {file.name}")
     return JsonResponse({"ok": 201, "link": link.serializer})
 
 
@@ -189,5 +189,5 @@ def link_download(request):
         response["Content-Disposition"] = f"attachment; filename='{link.to_file.name}'"
         link.to_file.downloads += 1
         link.to_file.save()
-        logger.info(f"Action: download file {link.to_file.pk}: {link.to_file.dir}/{link.to_file.name} via link")
+        logger.info(f"Action: download file via link {link.to_file.pk}: {link.to_file.name}, owner - {link.to_file.owner}")
         return response
